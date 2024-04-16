@@ -1,5 +1,6 @@
 import json
 import re
+import sys
 from dateutil.parser import parse
 from datetime import datetime
 
@@ -78,10 +79,13 @@ def check_reguirements(data):
     return True
 
 
-def check_json(file):
-    data = pars_json(file)
+def check_json():
+    data = pars_json(sys.argv[1])
+    if data == -1:
+        return False
     return check_reguirements(data)
 
-check_json("test_files/test")
+if __name__ == "__main__":
+    print(check_json())
 
 
