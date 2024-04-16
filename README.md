@@ -3,7 +3,7 @@ Function that will check if file contain json that is defined as AWS::IAM::Role 
 
 # Before running
 You need:
-- Python3 and pip installed
+- Python3, git and pip installed
 - File with json that you want to check
 
 # How to run
