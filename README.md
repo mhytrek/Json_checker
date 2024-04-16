@@ -9,7 +9,7 @@ You need:
 ## How to run
 ```
 git clone https://github.com/mhytrek/Json_checker.git
-cd Json_checker
+cd Json_checker/json_parser
 pip install -r requirements.txt
 python json_checker.py <Path_to_file>
 ```
