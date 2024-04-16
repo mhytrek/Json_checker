@@ -17,15 +17,16 @@ def pars_json(file):
 
 
 def check_version(version):
-    if len(version) <= 7:
-        print("That is not AWS::IAM::Role Policy \n Version is not correct")
-        return False
     try:
         date_version = parse(version)
     except:
         print("That is not AWS::IAM::Role Policy \n Version is not correct")
         return False
-    return date_version <= datetime.today() and date_version.month is not None and date_version.day is not None
+    if version in ["2012-10-17", "2008-10-17"]:
+        return True
+    else:
+        print("That is not AWS::IAM::Role Policy \n Version is not correct")
+        return False
 
 
 def check_statement(statement):
@@ -65,7 +66,6 @@ def check_elements(document):
 
 
 def check_reguirements(data):
-    print(data)
     name = data.get("PolicyName")
     if name is None or len(name) < 1 or len(name) > 128:
         print("That is not AWS::IAM::Role Policy \n Name doesn't exist or name has wrong length")

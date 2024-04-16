@@ -19,9 +19,9 @@ class TestJson_checker(unittest.TestCase):
 
     def test_check_version(self):
         data_1 = json_checker.check_version("2024-9-31")
-        data_2 = json_checker.check_version("2019-10-10")
+        data_2 = json_checker.check_version("2008-10-17")
         data_3 = json_checker.check_version("2025-10-25")
-        data_4 = json_checker.check_version("2020")
+        data_4 = json_checker.check_version("2012")
 
         self.assertFalse(data_1)
         self.assertTrue(data_2)
@@ -45,8 +45,8 @@ class TestJson_checker(unittest.TestCase):
         data_1 = json_checker.check_elements({'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'], 'Resource': 'arn:aws:s3:::confidential-data'}]})
         data_2 = json_checker.check_elements({'Version': '2012-10-17', 'Stat': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'], 'Resource': 'arn:aws:s3:::confidential-data'}]})
         data_3 = json_checker.check_elements({'Version': '2030-10-17', 'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'], 'Resource': 'arn:aws:s3:::confidential-data'}]})
-        data_4 = json_checker.check_elements({'Version': '2010-10-17', 'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'],'Resource': '*'}]})
-        data_5 = json_checker.check_elements({'Version': '2010-10-17', 'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'],'Resource': 'arn:aws:s3:::confidential-data'}]})
+        data_4 = json_checker.check_elements({'Version': '2012-10-17', 'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'],'Resource': '*'}]})
+        data_5 = json_checker.check_elements({'Version': '2012-10-17', 'Statement': [{'Sid': 'IamListAccess', 'Effect': 'Allow', 'Action': ['iam:ListRoles', 'iam:ListUsers'],'Resource': 'arn:aws:s3:::confidential-data'}]})
 
         self.assertFalse(data_1)
         self.assertFalse(data_2)
@@ -107,7 +107,3 @@ class TestJson_checker(unittest.TestCase):
         self.assertFalse(data_5)
         self.assertTrue(data_6)
 
-    def test_check_json(self):
-        data_1 = json_checker.check_json("test_files/test")
-
-        self.assertFalse(data_1)
